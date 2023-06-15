@@ -18,21 +18,11 @@ string callbacks::eCB(StoryNode *n, MapGraph *g, Player *p) { return ""; }
 
 // Exception implementations.
 
-VertexTitleConflict::VertexTitleConflict(string title) {
-    hint = title;
-}
+VertexTitleConflict::VertexTitleConflict(string title) { hint = title; }
+string VertexTitleConflict::what() { return hint; }
 
-string VertexTitleConflict::what() {
-    return hint;
-}
-
-VertexNotFound::VertexNotFound(string title) {
-    hint = title;
-}
-
-string VertexNotFound::what() {
-    return hint;
-}
+VertexNotFound::VertexNotFound(string title) { hint = title; }
+string VertexNotFound::what() { return hint; }
 
 
 // StoryNode implementations.
@@ -78,15 +68,6 @@ string StoryNode::getPathMenu() { // O(m)
     }
 
     return menu.str();
-}
-
-string StoryNode::getPathName(StoryNode *branch) { // O(m), if this method were more important, I would maybe use a map instead of a vector.
-    for (auto pathData : connections) {
-        if (branch == pathData->second) {
-            return pathData->first;
-        }
-    } 
-    return "";
 }
 
 void StoryNode::removePath(StoryNode *branch) { // O(m)
@@ -150,30 +131,6 @@ StoryNode *MapGraph::getByTitle(string title) { // O(1)
     
     // Grab it.
     return vertices[title];
-}
-
-std::vector<arborEdge *> *MapGraph::arborescence(string sourceTitle) { // O(3n * m)
-    pathMap *paths = shortestPath(sourceTitle); // O(2n * m)?
-
-    auto edges = new std::vector<arborEdge *>;
-
-    for (auto const& [destination, data] : (*paths)) { // O(n), as one entry per node.
-        // Skip the source node, skip any inaccessible nodes.
-        if (destination == sourceTitle || data->second == "") continue;
-
-        // Get source and destination nodes
-        StoryNode *sourceNode = getByTitle(data->second);
-        StoryNode *destinationNode = getByTitle(destination);
-
-        // Create an arborEdge object to describe the edge.
-        edges->push_back(new arborEdge(
-            sourceNode, destinationNode, sourceNode->getPathName(destinationNode)
-        ));
-    }
-
-    // Delete the path information, return edges.
-    delete paths;
-    return edges;
 }
 
 pathMap *MapGraph::shortestPath(string nodeTitle) { // O(2n * m) ??

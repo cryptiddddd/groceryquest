@@ -13,7 +13,6 @@ As the graph structure is the main structure of the program, I want to keep an e
 | `~StoryNode()`    | O(n)       | Where 'n' is the number of connections.
 | `addPath()`       | O(1)       |
 | `getPathMenu()`   | O(n)       | 
-| `getPathName()`   | O(n)       | 
 | `removePath()`    | O(n)       |
 
 
@@ -27,7 +26,6 @@ As the graph structure is the main structure of the program, I want to keep an e
 | `deleteArc()`     | O(m)       | 'm' being the relevant node's number of connections.
 | `addVertex()`     | O(1)       | 
 | `getByTitle()`    | O(1)       | I actually don't know what the efficiency for accessing a map is. I assumed average case from [Big-O cheat sheet](https://www.bigocheatsheet.com/).
-| `arborescence()`  | O(3n * m)  | Uses shortest path, iterates through the information another time.
 | `shortestPath()`  | O(2n * m)  |
 | `showVertices()`  | O(n)       | Necessary to visit all nodes. 
 

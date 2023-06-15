@@ -21,9 +21,6 @@ typedef std::pair<string, StoryNode *> path;
 // Map of paths for use in MapGraph.shortestPath()
 typedef std::map<string, std::pair<int, string> *> pathMap;
 
-// An edge only for use in MapGraph.arborescence()
-typedef std::tuple<StoryNode *, StoryNode *, string> arborEdge;
-
 
 namespace callbacks {
     // Empty callback
@@ -102,14 +99,6 @@ struct StoryNode {
     string getPathMenu();
 
     /**
-     * Get the name of a node's connection to another node.
-     * @param branch The other node.
-     * @return The name/narrative text of the connection.
-     * @note Returns a blank string if there is no connection. This may be confused with an unnamed connection. I am making this decision because this method is only needed for the graph's arborescence() method.
-    */
-    string getPathName(StoryNode *branch);
-
-    /**
      * Removes a branch from the current node's connections.
      * @throws No error thrown if the desired branch isn't found.
      * @param branch The old connection to break.
@@ -176,13 +165,6 @@ class MapGraph {
          * @return The number of vertices in the graph.
         */
         inline int getSize() const { return size; } // O(1)
-
-        /**
-         * Calculates the graph's minimum arborescence starting at the given node.
-         * @param sourceTitle Title of the node to begin with.
-         * @return A vector of tuples representing each edge (source, destination, descriptive text).
-        */
-        std::vector<arborEdge *> *arborescence(string sourceTitle);
 
         /**
          * Calculates the shortest path to every (accessible) node from the given node.

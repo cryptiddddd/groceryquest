@@ -2,6 +2,9 @@
 
 # Grocery Quest
 
+![signature](https://img.shields.io/badge/crane%20did%20this-926cd4?style=for-the-badge)
+![c++ standard 23](https://img.shields.io/badge/c++-2023-00599C?style=for-the-badge&logo=cplusplus&logoColor=00599C&labelColor=FFF)
+
 Grocery Quest is a non-linear text adventure I'm building from scratch. Its framework is something I would one day like to make available as a tool for other developers, but currently I don't think I'm ahead of anyone.
 
 ## Quickstart

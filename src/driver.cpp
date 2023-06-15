@@ -10,29 +10,35 @@
 using std::cin, std::cout, std::endl, std::string;
 
 
-int main(int argc, char *argv[]) {
-    // Aesthetic preference.
-    cout << endl << endl;
-
+void run(bool tutorial) {
     Game game(story::getGraph());
 
-    try {
-        // Argument flag `-t` skips tutorial.
-        if (!(argc == 2 && string(argv[1]) == "-t")) {
-            game.runGame("TUTORIAL");
-            cout << endl << game.textPartition << endl << game.textPartition << endl  << endl << endl;
-        }
+    // Aesthetic preference.
+    cout << endl << endl;
+    if (tutorial) {
+        game.runGame("TUTORIAL");
+        cout << endl << game.textPartition << endl << game.textPartition << endl  << endl << endl;
+    }
 
-        // Play game.
-        game.runGame("START");
-        cout << "\nYour journey must end here. Thank you for playing what is only the beginning." << endl << endl;
+    // Play game.
+    game.runGame("START");
+    cout << "\nYour journey must end here. Thank you for playing what is only the beginning." << endl << endl;
+}
+
+int main(int argc, char *argv[]) {
+    // Argument flag `-t` skips tutorial.
+    bool playTutorial = !(argc == 2 && string(argv[1]) == "-t");
+
+    try {
+        run(playTutorial);
+        
     } catch (EndProgram) {
         cout << "\nEnding game." << endl << endl;
     }
 
-    string doorStop;
-    cout << "[ Enter any key to close. ]";
-    cin >> doorStop;
+    cout << "[ Hit enter to close. ]";
+    cin.ignore();
+    cin.get();
 
     return 0;
 }

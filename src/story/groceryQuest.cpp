@@ -43,7 +43,7 @@ void createTutorial(MapGraph *graph) {
     ));
 
     graph->addVertex(new StoryNode(
-        "Wizardville is made from scratch over a couple of weeks for my data structure class. Each 'page' of the adventure is a point on a map (or a node on a graph), that holds data representing one location, or point in conversation. Each node may have a callback function, and any callback function may update a player variable (add something to your inventory, set a flag to remember your decision) or check how many times you've visited that location, in order to create a more responsive experience.\n\nWizardville is written in C++ and compiled with GCC. For this project, I wrote a simple framework which could easily be customized for other text adventures, by anyone with some familiarity with C++. I attempted to make it as approachable as possible.",
+        "Grocery Quest is made from scratch over a couple of weeks for my data structure class. Each 'page' of the adventure is a point on a map (or a node on a graph), that holds data representing one location, or point in conversation.\n\nEach node may also have a callback function, and any callback function may update a player variable (add something to your inventory, set a flag to remember your decision) or check how many times you've visited that location, in order to create a more responsive experience.\n\nGrocery Quest is written in C++ and compiled with GCC. For this project, I wrote a simple framework which could easily be customized for other text adventures, by anyone with some familiarity with C++ (or with a good template :]). I attempted to make it as approachable to work with as possible.\n\nTo view source files, visit https://github.com/cryptiddddd/groceryquest",
         "tut.2"
     ));
 
@@ -138,6 +138,10 @@ string trail(StoryNode *n, MapGraph *m, Player *p) {
 
 // Creates story subgraph.
 void createGame(MapGraph *graph) {
+    const string CONTINUE = "(Continue.)";
+    const string RETURN = "(Return.)";
+    const string EXIT = "(Exit.)";
+
     // Opening
     graph->addVertex(new StoryNode(
         "You live atop a forested hill, in a small and cluttered home. You live alone, with the exception of Simon, a three-legged cat.\n\nAt the base of the hill is a town, and in this town is your potion shop. You are the potion master, the Alchemist.\n\nIt is early morning, and you are awoken by Simon's three paws.",
@@ -199,14 +203,14 @@ void createGame(MapGraph *graph) {
     graph->addArc("hill.house.bedroom", "hill.house.bedroom.hat", "Don wizard hat.");
     graph->addArc("hill.house.bedroom", "hill.house.kitchen", "Enter kitchen.");
 
-    graph->addArc("hill.house.bedroom.hat", "hill.house.bedroom", "(Continue.)");
+    graph->addArc("hill.house.bedroom.hat", "hill.house.bedroom", CONTINUE);
     
     graph->addArc("hill.house.kitchen", "hill.house.kitchen.errandList", "Check errand list.");
     graph->addArc("hill.house.kitchen", "hill.house.bedroom", "Enter bedroom.");
     graph->addArc("hill.house.kitchen", "hill.house.living", "Enter living room.");
     graph->addArc("hill.house.kitchen", "hill.house.exterior", "Go outside.");
 
-    graph->addArc("hill.house.kitchen.errandList", "hill.house.kitchen", "(Continue.)");
+    graph->addArc("hill.house.kitchen.errandList", "hill.house.kitchen", CONTINUE);
     
     graph->addArc("hill.house.living", "hill.house.kitchen", "Enter kitchen.");
     graph->addArc("hill.house.living", "hill.house.exterior", "Go outside.");

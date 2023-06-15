@@ -6,7 +6,7 @@ Grocery Quest is the test game for its from-scratch framework.
 
 ![Current UML Design](uml_design.png)
 
-Skeleton:
+## File skeleton:
 
 - `graph.h` & `graph.cpp`
     + `Graph` class.
@@ -15,9 +15,9 @@ Skeleton:
     + `VertexNotFound` exception.
 - `player.h` & `player.cpp`
     + `Player` class.
-- `story.h` & `wizardville.cpp`
+- `story.h` & `story/groceryQuest.cpp`
     + `getStory()` function.
-    - `wizardville.cpp` contains the implementation expected by `story.h`. (Any `.cpp` that implements `getStory()` could be substituted.)
+    - Files within `src/story/` implement `story.h`, providing the `getStory()` function with a real return value.
 - `game.h` & `game.cpp`
     + `Game` class.
     + `EndProgram` exception.

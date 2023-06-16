@@ -31,7 +31,6 @@ int main(int argc, char *argv[]) {
 
     try {
         run(playTutorial);
-        
     } catch (EndProgram) {
         cout << "\nEnding game." << endl << endl;
     }

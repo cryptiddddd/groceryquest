@@ -18,3 +18,5 @@ To compile graph unit tests:
 ```
 g++ -Iinclude src/graph.cpp test/unitTests.cpp -o bin/tests
 ```
+
+*I think I'm keeping "official" builds in `/builds/` but who knows?

@@ -9,14 +9,20 @@ Grocery Quest is a non-linear text adventure I'm building from scratch. Its fram
 
 ## Quickstart
 
+> Notes from me to me.
+
 To compile game with G++:
 ```
-g++ -Iinclude src/driver.cpp src/game.cpp src/graph.cpp src/player.cpp src/story/groceryquest.cpp -o bin/quest
+g++ -Iinclude src/driver.cpp src/game.cpp src/graph.cpp src/player.cpp src/story/groceryquest.cpp -o build/quest
 ```
 
 To compile graph unit tests: 
 ```
-g++ -Iinclude src/graph.cpp test/unitTests.cpp -o bin/tests
+g++ -Iinclude src/graph.cpp test/unitTests.cpp -o build/tests
 ```
 
-*I think I'm keeping "official" builds in `/builds/` but who knows?
+To compile .res files:
+```
+windres src/meta/meta.rc -O coff -o bin/meta.res
+windres src/meta/icon.rc -O coff -o bin/icon.res
+```

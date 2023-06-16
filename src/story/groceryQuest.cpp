@@ -34,8 +34,13 @@ string tutAssurance(StoryNode *n, MapGraph *m, Player *p) {
 // Tutorial subgraph.
 void createTutorial(MapGraph *graph) {
     graph->addVertex(new StoryNode(
-        "This is a nonlinear text adventure. To play, you will be given a simple menu of options to pick from. To make your selection, you will enter the corresponding number.\n\nHere is your first test:", 
+        "Would you like a brief tutorial?",
         "TUTORIAL"
+    ));
+
+    graph->addVertex(new StoryNode(
+        "This is a nonlinear text adventure. To play, you will be given a simple menu of options to pick from. To make your selection, you will enter the corresponding number. You have already passed your first test.", 
+        "tut"
     ));
 
     graph->addVertex(new StoryNode(
@@ -45,7 +50,7 @@ void createTutorial(MapGraph *graph) {
 
     graph->addVertex(new StoryNode(
         tutDoubt,
-        "You'll get it eventually.",
+        "You will.",
         "tut.1.b"
     ));
 
@@ -61,8 +66,11 @@ void createTutorial(MapGraph *graph) {
         "END"
     ));
 
-    graph->addArc("TUTORIAL", "tut.1", "Got it!");
-    graph->addArc("TUTORIAL", "tut.1.b", "I don't get it.");
+    graph->addArc("TUTORIAL", "tut", "Yes.");
+    graph->addArc("TUTORIAL", "tutEnd", "No.");
+
+    graph->addArc("tut", "tut.1", "Got it!");
+    graph->addArc("tut", "tut.1.b", "I don't understand.");
 
     graph->addArc("tut.1.b", "tut.1", "Ok.");
 
@@ -326,7 +334,7 @@ string tailorOrder(StoryNode *n, MapGraph *m, Player *p) {
     return "* Tailor's order removed from inventory *";
 }
 
-
+// Town zone
 void createTownZone(MapGraph *graph) {
     // TOWN
     // Town edge
@@ -533,7 +541,7 @@ void createTownZone(MapGraph *graph) {
 void createGame(MapGraph *graph) {
     createHillZone(graph);
     createTownZone(graph);
-
+    // createOutskirts(graph);
 }
 
 

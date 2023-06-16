@@ -10,15 +10,27 @@
 using std::cin, std::cout, std::endl, std::string;
 
 
-void run(bool tutorial) {
-    Game game(story::getGraph());
+/**
+ * Runs the entire game.
+ * @param playTutorial True: prompts player for the tutorial. False skips.
+ * @return No return.
+*/
+void run(bool playTutorial) {
+    Game game(story::getGraph()); // Make game, get the implemented graph.
 
-    // Aesthetic preference.
-    cout << endl << endl;
-    if (tutorial) {
+    // Aesthetic spacing preference.
+    cout << endl;
+
+    // Tutorial 
+    if (playTutorial) {
         game.runGame("TUTORIAL");
-        cout << endl << game.textPartition << endl << game.textPartition << endl  << endl << endl;
+        cout << endl << game.textPartition << endl;
+    } else {
+        cout << "Enter 'h' at any time for a brief help menu." << endl;
     }
+
+    // Again spacing preference.
+    cout << game.textPartition << endl  << endl << endl;
 
     // Play game.
     game.runGame("START");
@@ -35,6 +47,7 @@ int main(int argc, char *argv[]) {
         cout << "\nEnding game." << endl << endl;
     }
 
+    // Regardless of how the game ends, give the player a moment to see all text.
     cout << "[ Hit enter to close. ]";
     cin.ignore();
     cin.get();

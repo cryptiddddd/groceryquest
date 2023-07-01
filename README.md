@@ -18,7 +18,7 @@ g++ -Iinclude src/driver.cpp src/game.cpp src/graph.cpp src/player.cpp src/story
 
 To compile graph unit tests: 
 ```
-g++ -Iinclude src/graph.cpp test/unitTests.cpp -o build/tests
+g++ -Iinclude src/graph.cpp test/unitTests.cpp -o build/test/tests
 ```
 
 To compile .res files:

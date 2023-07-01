@@ -12,17 +12,17 @@ using std::cin, std::cout, std::endl, std::string;
 
 /**
  * Runs the entire game.
- * @param playTutorial True: prompts player for the tutorial. False skips.
+ * @param enableTutorial True: prompts player for the tutorial. False skips.
  * @return No return.
 */
-void run(bool playTutorial) {
+void run(bool enableTutorial) {
     Game game(story::getGraph()); // Make game, get the implemented graph.
 
     // Aesthetic spacing preference.
     cout << endl;
 
     // Tutorial 
-    if (playTutorial) {
+    if (enableTutorial) {
         game.runGame("TUTORIAL");
         cout << endl << game.textPartition << endl;
     } else {
@@ -39,18 +39,17 @@ void run(bool playTutorial) {
 
 int main(int argc, char *argv[]) {
     // Argument flag `-t` skips tutorial.
-    bool playTutorial = !(argc == 2 && string(argv[1]) == "-t");
+    bool enableTutorial = !(argc == 2 && string(argv[1]) == "-t");
 
     try {
-        run(playTutorial);
+        run(enableTutorial);
     } catch (EndProgram) {
         cout << "\nEnding game." << endl << endl;
     }
 
     // Regardless of how the game ends, give the player a moment to see all text.
-    cout << "[ Hit enter to close. ]";
-    cin.ignore();
-    cin.get();
+    cout << "[ Hit enter to close. ]\n";
+    cin.ignore(); cin.get();
 
     return 0;
 }
